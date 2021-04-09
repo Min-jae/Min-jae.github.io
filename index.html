@@ -1,0 +1,303 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+		High-fidelity Parallel WaveGAN with Multi-band Harmonic-plus-Noise Model
+    </title>
+    <link rel="shortcut icon" href="img/clova_192x192.png">
+    <link rel="icon" href="img/clova_192x192.png">
+    <link rel="apple-touch-icon" href="img/clova_192x192.png">
+</head>
+<body>
+
+<article>
+    <header>
+        <h1>High-fidelity Parallel WaveGAN with Multi-band Harmonic-plus-Noise Model</h1>
+    </header>
+</article>
+
+<style>
+	textarea {
+		width: 200px;
+	}
+</style>
+<hr><hr>
+<div>
+<b>Authors: Min-Jae Hwang, Ryuichi Yamamoto, Eunwoo Song, and Jae-Min Kim</b>
+<ul>
+  <li><b>Abstract</b></li>
+	This paper proposes a multi-band harmonic-plus-noise (HN) Parallel WaveGAN (PWG) vocoder.
+	To generate a high-fidelity speech signal, it is important to well-reflect the harmonic-noise characteristics of the speech waveform in the time-frequency domain.
+	However, it is difficult for the conventional PWG model to accurately match this condition, as its single generator inefficiently represents the complicated nature of harmonic-noise structures.
+	In the proposed method, the HN WaveNet models are employed to overcome this limitation, which enable the separate generation of the harmonic and noise components of speech signals from the pitch-dependent sine wave and Gaussian noise sources, respectively.
+	Then, the energy ratio between harmonic and noise components in multiple frequency bands (i.e., subband harmonicity) is predicted by an additional harmonicity estimator.
+	Weighted by the estimated harmonicities, the gain of harmonic and noise components in each subband is adjusted, and finally mixed together to compose the full-band speech signal.
+	Subjective evaluation results showed that the proposed method significantly improved the perceptual quality of the synthesized speech.
+</ul>
+<ul>
+  <li><b>Submitted to <a href=https://www.interspeech2021.org>Interspeech 2021</a></b></li>
+</ul>
+</div>  
+<br>
+
+<hr><hr>
+
+<div>
+<h2 id="c1"> <font size='5'>Section 4.2. Evaluation for analysis / synthesis system</h2>
+<ul>
+
+<li><b><font size='4'>Results</b></li>
+<div>
+<img src="img/result1.png", width=1000px>
+</div>
+<br>
+
+<li><b><font size='4'>Audio Samples</b></li>
+<style type="text/css">
+	.tg  {border-collapse:collapse;border-spacing:0;border:none;}
+	.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg .tg-8jgo{border-color:#ffffff;text-align:center;vertical-align:top}
+	.tg .tg-lghr{border-color:#ffffff;text-align:center}
+	.tg .tg-0a55{background-color:#f0f0f0;border-color:#ffffff;text-align:center;vertical-align:top}
+	.tg .tg-modu{background-color:#f0f0f0;border-color:#ffffff;text-align:center}
+</style>
+
+<table class="tg">
+<style>
+  table {
+    width: 900px; <!--45%-->;
+    border-top: 2px solid #444444;
+	border-bottom: 2px solid #444444;
+    border-collapse: collapse;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  th {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  td {
+	text-align: center;
+    border-top: 1px solid #C0C0C0;
+	border-bottom: 1px solid #C0C0C0;
+    border-collapse: collapse;
+	padding-top: 5px;
+	padding-bottom: 5px;
+  }
+  .jb-normal {
+	font-weight: bold;
+  }
+</style>
+<table>
+	<tr>
+		<th><font size='4'>System</th>
+		<th><font size='4'>S1</th>
+		<th><font size='4'>S2</th>
+		<th><font size='4'>S3</th>
+		<th style="color:red"><font size='4'>S4 (ours)</th>
+		<th style="color:red"><font size='4'>S5 (ours)</th>
+		<th style="color:green"><font size='4'>S6</th>
+	</tr>
+	<tr>
+		<th><font size='2'>Model</th>
+		<th><font size='2'>WaveNet</th>
+		<th><font size='2'>PWG</th>
+		<th><font size='2'>HN-PWG w/o noise</th>
+		<th style="color:red"><font size='2'>HN-PWG</th>
+		<th style="color:red"><font size='2'>Multi-band HN-PWG</th>
+		<th style="color:green"><font size='2'>Recordings</th>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "충청권은 23만명에서 33만명으로 10만명 증가했다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s1_wavenet/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s2_pwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s3_hnpwg_wonoise/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s4_hnpwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s5_multiband_hnpwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s6_recorded/fkyw31836.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "지금부터 동화를 들어볼까요?"</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s1_wavenet/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s2_pwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s3_hnpwg_wonoise/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s4_hnpwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s5_multiband_hnpwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s6_recorded/fkyw040020.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "덥고 습한 북태평양 고기압의 영향권에서, 구름 사이로 햇볓이 내리쬐고 있기 때문입니다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s1_wavenet/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s2_pwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s3_hnpwg_wonoise/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s4_hnpwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s5_multiband_hnpwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s6_recorded/fkyw30498.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "단원 개개인이 역량을 뽐낼수 있도록 구성돼있다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s1_wavenet/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s2_pwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s3_hnpwg_wonoise/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s4_hnpwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s5_multiband_hnpwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/1_anasyn/s6_recorded/fkyw31444.wav"></audio></td>
+	</tr>
+</table>
+</ul> 
+</div>
+
+<hr><hr>
+
+<div>
+<h2 id="c1"> <font size='5'>Section 4.3. Evaluation for Text-to-Speech scenario</h2>
+<ul>
+
+<li><b><font size='4'>Results</b></li>
+<div>
+<img src="img/result2.png", width=500px>
+</div>
+<br>
+
+<li><b><font size='4'>Audio Samples</b></li>
+<style type="text/css">
+	.tg  {border-collapse:collapse;border-spacing:0;border:none;}
+	.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+	.tg .tg-8jgo{border-color:#ffffff;text-align:center;vertical-align:top}
+	.tg .tg-lghr{border-color:#ffffff;text-align:center}
+	.tg .tg-0a55{background-color:#f0f0f0;border-color:#ffffff;text-align:center;vertical-align:top}
+	.tg .tg-modu{background-color:#f0f0f0;border-color:#ffffff;text-align:center}
+</style>
+
+
+<table class="tg">
+<style>
+  table {
+    width: 900px; <!--45%-->;
+    border-top: 2px solid #444444;
+	border-bottom: 2px solid #444444;
+    border-collapse: collapse;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  th {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  td {
+	text-align: center;
+    border-top: 1px solid #C0C0C0;
+	border-bottom: 1px solid #C0C0C0;
+    border-collapse: collapse;
+	padding-top: 5px;
+	padding-bottom: 5px;
+  }
+  .jb-normal {
+	font-weight: bold;
+  }
+</style>
+<table>
+	<tr>
+		<th><font size='4'>System</th>
+		<th><font size='4'>S1</th>
+		<th><font size='4'>S2</th>
+		<th><font size='4'>S3</th>
+		<th style="color:red"><font size='4'>S4 (ours)</th>
+		<th style="color:red"><font size='4'>S5 (ours)</th>
+		<th style="color:green"><font size='4'>S6</th>
+	</tr>
+	<tr>
+		<th><font size='2'>Model</th>
+		<th><font size='2'>WaveNet</th>
+		<th><font size='2'>PWG</th>
+		<th><font size='2'>HN-PWG w/o noise</th>
+		<th style="color:red"><font size='2'>HN-PWG</th>
+		<th style="color:red"><font size='2'>Multi-band HN-PWG</th>
+		<th style="color:green"><font size='2'>Recordings</th>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "충청권은 23만명에서 33만명으로 10만명 증가했다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s1_wavenet/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s2_pwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s3_hnpwg_wonoise/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s4_hnpwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s5_multiband_hnpwg/fkyw31836.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s6_recorded/fkyw31836.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "지금부터 동화를 들어볼까요?"</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s1_wavenet/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s2_pwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s3_hnpwg_wonoise/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s4_hnpwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s5_multiband_hnpwg/fkyw040020.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s6_recorded/fkyw040020.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "덥고 습한 북태평양 고기압의 영향권에서, 구름 사이로 햇볓이 내리쬐고 있기 때문입니다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s1_wavenet/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s2_pwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s3_hnpwg_wonoise/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s4_hnpwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s5_multiband_hnpwg/fkyw30498.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s6_recorded/fkyw30498.wav"></audio></td>
+	</tr>
+	<tr>
+		<tr>
+		<td colspan="8" align="left"> <font size='3'> "단원 개개인이 역량을 뽐낼수 있도록 구성돼있다."</td>
+		</tr>
+		<th>Audio</th>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s1_wavenet/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s2_pwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s3_hnpwg_wonoise/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s4_hnpwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s5_multiband_hnpwg/fkyw31444.wav"></audio></td>
+		<td><audio controls style="width: 140px;"><source src="samples/2_tts/s6_recorded/fkyw31444.wav"></audio></td>
+	</tr>
+</table>
+</ul> 
+</div>
+
+<br>
+
+<hr><hr>
+<div>
+<h2> Acknowledgements </h2>
+<ul> Work performed with nVoice team, Clova Voice, Naver Corp. </ul>  
+<br>
+</div>
+
+
+</body>
+</html>
